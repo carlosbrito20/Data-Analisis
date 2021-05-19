@@ -52,4 +52,4 @@ plt.legend(loc="best")
 plt.show()
 
 ## Test view
-![](/se agregaran imagenes)
+![](/Lectura_dataset_pandas.JPG)
