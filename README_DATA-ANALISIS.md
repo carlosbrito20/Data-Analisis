@@ -29,7 +29,7 @@ price_vars = ["open","high","low","close","next_weeks_open","next_weeks_close"] 
 print(price_vars) \
 print ("")  \
 print("Elimino el caracter $ de la lista") \
-data_floats = data_raw[price_vars].applymap(lambda x: x.replace("$","")).astype("float") \
+data_floats = data_raw[price_vars].applymap(lambda x: x.replace("$","")).astype("float")
 # Visualizo la salida
 print(data_floats.head())
 # Aplico las operaciones al dataframe
