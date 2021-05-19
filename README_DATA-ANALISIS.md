@@ -9,7 +9,7 @@ Se realiza modelado y limpieza de datos
 Realizo visualización de los datos con matplotlib
 
 ## Visualización de notebook y dataset
-https://github.com/carlosbrito20/Data-Analisis/blob/main/Aplicando_pandas_matplotlib.py 
+https://github.com/carlosbrito20/Data-Analisis/blob/main/Aplicando_pandas_matplotlib.py \
 https://github.com/carlosbrito20/Data-Analisis/blob/main/dow_jones_index.data
 
 ## Ejecución
