@@ -52,4 +52,11 @@ plt.legend(loc="best")
 plt.show()
 
 ## Test view
+  ## Lectura del dataset con pandas
 ![](/Lectura_dataset_pandas.JPG)
+
+  ## Modelado de datos
+![](/Modelado_datos.JPG)
+
+  ## Visualización grafico con Matplotlib
+ ![](/Visualización_con_Matplotlib.JPG)
