@@ -1,6 +1,6 @@
 # Data-Analisis
 
-Visualización de data en con Jupiter usuando Pyhton
+Visualización de data con Jupiter usuando Pyhton
 
 ## Información 
 Levanto dataset con el nombre de dow_jones_index.data \
