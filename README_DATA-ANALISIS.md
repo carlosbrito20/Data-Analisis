@@ -8,7 +8,9 @@ Uso pandas para visualizar el dataset en formato dataFrame \
 Se realiza modelado y limpieza de datos
 Realizo visualización de los datos con matplotlib
 
-## Visualización de los procesos. 
+## Visualización de notebook y dataset
+https://github.com/carlosbrito20/Data-Analisis/blob/main/Aplicando_pandas_matplotlib.py 
+https://github.com/carlosbrito20/Data-Analisis/blob/main/dow_jones_index.data
 
 ## Ejecución
 Para ejecutar la notebook uso jupiter que viene integrado en anaconda navigator.
