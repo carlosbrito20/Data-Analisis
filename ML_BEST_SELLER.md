@@ -199,7 +199,7 @@ def get_atributos_prod(): \
 # Armo una lista para proceder a realizar el insert en la tabla principal
                 var = (fecha_proceso, id_ml, seller,
                 title, precio_a, moneda_a,
-                precio_b, moneda_b, fecha_v, \
+                precio_b, moneda_b, fecha_v, 
                 cond_a, cond_b, garantia, 
                 envio, vtas_cancel, vtas_complet,
                 total_vtas, url_ml)
