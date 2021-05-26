@@ -19,7 +19,8 @@ class productos():
         url_name = url_items + idml
 		
         #registro en bd inicio ejecucion api items productos
-        sql = "insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) values (now(), 'api items productos', 'Ejecutando')"
+        sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
+	values (now(), 'api items productos', 'Ejecutando')"""
         BD.query_log(sql)
         response = requests.get(url_name)
 
@@ -31,19 +32,17 @@ class productos():
             BD.query_log(sql)
             datos = response.json()
             return datos
-
-####################################################################################################
-
 # Creo la conexión a la base de datos mysql
 class BaseDatos(): \
-    def bd_conexion(): \
+	def bd_conexion(): \
         dbcone = { \
                 'host': '127.0.0.1', \
                 'user': 'cbrito20', \
                 'password': 'Rtbs201-_$$', \
                 'db': 'productos_ml' \
-                }
-        conexion = mysql.connector.connect(**dbcone)       \  
+                } \
+        conexion = mysql.connector.connect(**dbcone)       
+	\
         return conexion
 
 #  Esta función es para registrar en base de datos los kpi de ejecución
@@ -63,7 +62,6 @@ class BaseDatos(): \
         print(cursor.rowcount, "Registros procesados")
         conec.close()
 
- ####################################################################################################   
 #  Método buscar las garantías de los productos
 def busca_garantia(garant): \
     for ga in garant: \
@@ -74,7 +72,7 @@ def busca_garantia(garant): \
             no_aplica=("garantia do vendedor",  "garantía del vendedor", "garantía de fábrica") \
             if x.lower() not in no_aplica: \
                return x
-####################################################################################################
+	       
 # Busco la condición / estado de los productos.
 def condicion_prod(atri_1): \
     for a in atri_1: \
@@ -83,7 +81,6 @@ def condicion_prod(atri_1): \
         if b.lower() in ("nuevo", "novo", "reacondicionado", "usado", "used", "new", "recondicionado"): \
             return b
 			
-####################################################################################################
 # Obtengo segunda condición del producto.
 def condicion_prod_2(atri_2): 
 
@@ -91,14 +88,13 @@ def condicion_prod_2(atri_2):
         cond_2 = atri_2
         return cond_2.lower()
 		
-####################################################################################################
 # Funcion para buscar las ventas en la api
 def get_ventas(seller): \
     BD=BaseDatos() \
     url_user = "https://api.mercadolibre.com/users/" \
     url_ventas = url_user + str(seller) \
     #registro en bd inicio ejecucion api busca ventas  \
-    sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
+    sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) \
     values (now(), 'api busca ventas', 'Ejecutando')""" \
     BD.query_log(sql) \
     ventas = requests.get(url_ventas) 
@@ -117,7 +113,6 @@ def get_ventas(seller): \
         
         return (vtas_cancel, vtas_complet, total_vtas)
 
-####################################################################################################
 # Función para haccer la conversión de monedas
 def conversion_brl_to_usd(valor_ars): 
     BD=BaseDatos() \
@@ -146,7 +141,6 @@ def conversion_brl_to_usd(valor_ars):
          valor_usd = valor_ars / valor_conversion
         return (round(valor_usd,2), moneda, fecha_vigencia)
 
-##############################################################################################
 # Se procede a buscar los id_de las publicaciones para proceder a extraer los atributos
 def get_atributos_prod(): \
     BD=BaseDatos() \
@@ -227,12 +221,11 @@ def get_atributos_prod(): \
 		duracion = round(time_to_sec(fecha_fin)-time_to_sec(fecha_inicio),60) 
 		where fecha_inicio>=current_date() and nombre_api ='Carga tabla principal' and fecha_fin is null"""
                 BD.query_log(sql)
-    
-####################################################################################################              
+            
  # Función que llama al metodo principal                                          
 
 if __name__ == '__main__': \
-    qr = BaseDatos() \
+    qr = BaseDatos() 
  # Registra inicio del proceso 
     sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
     values (now(), 'Proceso productos', 'Ejecutando')"""
