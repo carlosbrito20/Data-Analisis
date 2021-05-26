@@ -4,11 +4,11 @@
 import requests \
 import mysql.connector \
 from mysql.connector import cursor \
-from datetime import datetime \
+from datetime import datetime 
 
 # Obtengo los atributos de los productos en /items/
 
-class productos(): \
+class productos(): 
 
     def __init__(self) -> None:
         print("")
@@ -81,12 +81,11 @@ def condicion_prod(atri_1): \
         b = a['value_name'] \
         #filtro porque vienen otros valores \
         if b.lower() in ("nuevo", "novo", "reacondicionado", "usado", "used", "new", "recondicionado"): \
-            ##print(b) \
             return b
 			
 ####################################################################################################
 # Obtengo segunda condición del producto.
-def condicion_prod_2(atri_2): \
+def condicion_prod_2(atri_2): 
 
     if atri_2.lower() in ("new", "nuevo"):
         cond_2 = atri_2
@@ -99,9 +98,10 @@ def get_ventas(seller): \
     url_user = "https://api.mercadolibre.com/users/" \
     url_ventas = url_user + str(seller) \
     #registro en bd inicio ejecucion api busca ventas  \
-    sql = "insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) values (now(), 'api busca ventas', 'Ejecutando')" \
+    sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
+    values (now(), 'api busca ventas', 'Ejecutando')""" \
     BD.query_log(sql) \
-    ventas = requests.get(url_ventas) \
+    ventas = requests.get(url_ventas) 
 
     if ventas.status_code == 200:
         #registro en bd fin ejecucion api busca ventas
@@ -119,13 +119,14 @@ def get_ventas(seller): \
 
 ####################################################################################################
 # Función para haccer la conversión de monedas
-def conversion_brl_to_usd(valor_ars): \
+def conversion_brl_to_usd(valor_ars): 
     BD=BaseDatos() \
-    conversion="https://api.mercadolibre.com/currency_conversions/search?from=BRL&to=USD" \
+    conversion="https://api.mercadolibre.com/currency_conversions/search?from=BRL&to=USD" 
     #registro en bd inicio ejecucion api conversion moneda \
-    sql = "insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) values (now(), 'api conversion moneda', 'Ejecutando')"\
+    sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
+    values (now(), 'api conversion moneda', 'Ejecutando')""" \
     BD.query_log(sql) \
-    response = requests.get(conversion) \
+    response = requests.get(conversion) 
 
     if response.status_code == 200:
         #registro en bd fin ejecucion api conversion moneda
@@ -149,10 +150,11 @@ def conversion_brl_to_usd(valor_ars): \
 # Se procede a buscar los id_de las publicaciones para proceder a extraer los atributos
 def get_atributos_prod(): \
     BD=BaseDatos() \
-    bp=productos() \
+    bp=productos() 
 
     #registro en bd inicio ejecucion api search productos
-    sql = "insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) values (now(), 'api search productos', 'Ejecutando')"
+    sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
+    values (now(), 'api search productos', 'Ejecutando')"""
     BD.query_log(sql)
     url_search="https://api.mercadolibre.com/sites/MLB/search?q="
     producto= "Samsung Galaxy A20"
@@ -209,7 +211,8 @@ def get_atributos_prod(): \
                 total_vtas, url_ml)
 
                 #Registra tiempo de insert a la base
-                sql = "insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) values (now(), 'Carga tabla principal', 'Ejecutando')"
+                sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
+		values (now(), 'Carga tabla principal', 'Ejecutando')"""
                 BD.query_log(sql)
 
 # Inserta registros en la  tabla principal de mysql
@@ -231,7 +234,8 @@ def get_atributos_prod(): \
 if __name__ == '__main__': \
     qr = BaseDatos() \
  # Registra inicio del proceso 
-    sql = "insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) values (now(), 'Proceso productos', 'Ejecutando')"
+    sql = """insert into productos_ml.info_producto_log (fecha_inicio, nombre_api, status_proc) 
+    values (now(), 'Proceso productos', 'Ejecutando')"""
     qr.query_log(sql)
 
 # Si se reejecuta el proceso en el mismo día NO duplicamos registros.
