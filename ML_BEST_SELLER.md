@@ -6,12 +6,13 @@ import mysql.connector \
 from mysql.connector import cursor \
 from datetime import datetime \
 
+# Obtengo los atributos de los productos en /items/
+
 class productos(): \
 
     def __init__(self) -> None:
         print("")
-
-# Obtengo los atributos de los productos en /items/
+	
     def busca_atributos(self, idml):
         BD = BaseDatos()
         url_items="https://api.mercadolibre.com/items/"
